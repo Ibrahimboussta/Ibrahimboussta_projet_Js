@@ -1,7 +1,7 @@
 let dataBase = [
     {
-        askNa: "mohammed",
-        emailUser: "emailemail@gmail.com",
+        askNa: "med",
+        emailUser: "ibrahimboussta@gmail.com",
         ageUser: 20,
         passUser: "password",
     }
@@ -16,7 +16,7 @@ let profilUser = prompt('sign-up Or login Or change password')
 if (profilUser == 'sign-up') {
     let askNa = prompt(`enter your name`);
 
-    while (true || askNa == 0 || 1 || 2 || 3 || 4 ||5 || 6 || 7 || 8 || 9 ) {
+    while (true || askNa == 0 || 1 || 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9) {
         if (askNa == "") {
             askNa = prompt(`enter your name`);
         } else {
@@ -108,7 +108,7 @@ if (profilUser == 'sign-up') {
         passConfirm = prompt('entre your password without spaces')
         // break;
     }
-    
+
     if (passUser != passConfirm) {
         alert('you wrong please entre a correct password')
     }
@@ -118,26 +118,52 @@ if (profilUser == 'sign-up') {
     // }
 
     // console.log(passConfirm.trim());
-    
-const createUserProfile = (name, email, age, password) => {
-    let profile = {
-        askNa: name,
-        emailUser: email,
-        ageUser: age,
-        passUser: password
+
+    const createUserProfile = (name, email, age, password) => {
+        let profile = {
+            askNa: name,
+            emailUser: email,
+            ageUser: age,
+            passUser: password
+        }
+
+        dataBase.push(profile)
+
+        console.table(dataBase)
     }
 
-    dataBase.push(profile)
+    createUserProfile(askNa, emailUser, Number(ageUser), passUser)
 
-    console.table(dataBase)
+} else if (profilUser == 'login') {
+    let currentUser = [];
+
+    let login = (email, password) => {
+        let userFilter = dataBase.filter(element => (element.emailUser == email) && (element.passUser == password))
+        console.log(userFilter);
+
+        if (currentUser.length == 0 && userFilter) {
+            currentUser.push(userFilter)
+            console.log("you are connected");
+        } else {
+            alert("the provided info does not match our")
+        }
+    }
+
+    let loginUser = prompt("Insert your email to login")
+    while (loginUser.length == 0 || loginUser.includes("@") == false) {
+        loginUser = prompt("email cannot be empty  Insert your username to login")
+    }
+    let loginPassword = prompt("Insert your password to login")
+    while (loginPassword.length == 0) {
+        loginPassword = prompt("password cannot be empty Insert your password to login")
+    }
+
+    // currentUser.push(dataBase)
+    console.log(currentUser);
+    login(loginUser, loginPassword)
+    
+}else{
+    let emailCheck = prompt('Please entre your existing email')
+    let emailFilter = dataBase.filter(element => (element.emailUser == emailCheck))
+        console.log(emailFilter);
 }
-
-createUserProfile(askNa, emailUser, Number(ageUser), passUser)
-
-}
-
-
-
-
-
-
