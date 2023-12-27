@@ -161,9 +161,9 @@ if (profilUser == 'sign-up') {
     // currentUser.push(dataBase)
     console.log(currentUser);
     login(loginUser, loginPassword)
-    
-}else{
+
+} else {
     let emailCheck = prompt('Please entre your existing email')
     let emailFilter = dataBase.filter(element => (element.emailUser == emailCheck))
-        console.log(emailFilter);
-}
+    console.log(emailFilter);
+}  
