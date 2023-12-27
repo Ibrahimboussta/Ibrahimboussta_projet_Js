@@ -1,9 +1,22 @@
+let dataBase = [
+    {
+        askNa: "mohammed",
+        emailUser: "emailemail@gmail.com",
+        ageUser: 20,
+        passUser: "password",
+    }
+
+];
+console.table(dataBase);
+
+
 //* name check :
 let profilUser = prompt('sign-up Or login Or change password')
 
 if (profilUser == 'sign-up') {
     let askNa = prompt(`enter your name`);
-    while (true) {
+
+    while (true || askNa == 0 || 1 || 2 || 3 || 4 ||5 || 6 || 7 || 8 || 9 ) {
         if (askNa == "") {
             askNa = prompt(`enter your name`);
         } else {
@@ -41,34 +54,85 @@ if (profilUser == 'sign-up') {
             removeName = askNa.trim();
         }
     }
-    console.table(pushName);
+    // console.table(pushName);
     let sec_Name = pushName.join(" ")
     console.table(sec_Name);
 
     // let putEmail = prompt('entre your email')
     // console.log(putEmail.trim().toLowerCase());
+    //* email checked : 
 
     let emailUser = prompt('entre your email')
 
-    while (emailUser.includes(" ") || emailUser.length < 10 || emailUser.includes("@")) {
-        emailUser = prompt('entre your email')
+    while (emailUser.includes(" ") || emailUser.length < 10 || emailUser.includes("@") == false) {
+        emailUser = prompt('entre your email again')
         // break;
-    }  
-    
-    console.log(emailUser.trim().toLowerCase());
+    }
 
-    //* age checked : 
+    for (let index = 0; index < dataBase.length; index++) {
+        const element = dataBase[index];
+        while (askNa == element.askNa) {
+            askNa = prompt(" the  email should be unique")
+        }
+    }
+
+    let tableau = emailUser.trim().toLowerCase()
+    // console.table(tableau);
+
+    // //* age checked : 
 
     let ageUser = prompt('please entre your age')
-    let alphaExp = /^[0-9a-zA-Z]+$/;
-    while ((ageUser.includes(" ")) || (ageUser == "" ) || (ageUser == 0 ) || (isNaN(ageUser))) {
+    // let alphaExp = /^[0-9a-zA-Z]+$/;
+    while ((ageUser.includes(" ")) || (ageUser == "") || (ageUser.length >= 3) || (ageUser == 0) || (isNaN(ageUser))) {
         ageUser = prompt('try again')
         // if (isNaN(ageUser)) {
         //     ageUser = prompt('try again')
         // }
     }
-    console.log(ageUser.trim());
 
+    // console.log(Number(ageUser.trim()));
+
+    let passUser = prompt('entre password')
+    // let syboleUser = ["@", "#", "-", "+", "*", "/"]
+
+    while ((passUser.includes(" ")) || (passUser.length <= 7) || passUser.includes("@" || "#" || "-" || "+" || "*" || "/") == false) {
+        passUser = prompt('entre your password without spaces')
+        // break;
+    }
+
+    //* pass confirm : 
+    let passConfirm = prompt('Please confirm your password')
+    let syboleConfirm = ["@", "#", "-", "+", "*", "/"]
+
+    while ((passConfirm.includes(" ")) || (passConfirm.length <= 7)) {
+        passConfirm = prompt('entre your password without spaces')
+        // break;
+    }
+    
+    if (passUser != passConfirm) {
+        alert('you wrong please entre a correct password')
+    }
+
+    // while (syboleUser.test(passUser)) {
+    //     alert('done')
+    // }
+
+    // console.log(passConfirm.trim());
+    
+const createUserProfile = (name, email, age, password) => {
+    let profile = {
+        askNa: name,
+        emailUser: email,
+        ageUser: age,
+        passUser: password
+    }
+
+    dataBase.push(profile)
+
+    console.table(dataBase)
+}
+
+createUserProfile(askNa, emailUser, Number(ageUser), passUser)
 
 }
 
